@@ -17,7 +17,7 @@ ENV KUSTOMIZE_VERSION v3.5.4
 # kontainer-driver-metadata branch to be set for specific branch other than dev/master, logic at rancher/rancher/pkg/settings/setting.go
 ENV RANCHER_METADATA_BRANCH=dev-v2.5
 
-RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+#RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
 
 RUN apt-get update && \
     apt-get install -y gcc ca-certificates git wget curl vim less file xz-utils unzip && \
@@ -102,9 +102,6 @@ RUN wget -O - ${KUBECTL_URL} > /usr/bin/kubectl && chmod +x /usr/bin/kubectl
 RUN apt-get update && \
     apt-get install -y tox python3.8 python3-dev python3.8-dev libffi-dev libssl-dev
 
-#取消代理,因为网络介质下载完成
-ENV http_proxy ""
-ENV https_proxy ""
 
 ENV HELM_HOME /root/.helm
 ENV DAPPER_ENV REPO TAG DRONE_TAG SYSTEM_CHART_DEFAULT_BRANCH
